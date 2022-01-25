@@ -6,6 +6,8 @@
  * 1. Member class
  * 2. Static class
  * 3. Anonymous class
+ *
+ * Each class is exported in different .class file explicitly
  */
 class Outer
 {
@@ -15,7 +17,7 @@ class Outer
 		System.out.println("Outer class method calling...");
 	}
 	
-	class Inner
+	class Inner // exported by nama of Outer$Inner.class
 	{
 		public void display()
 		{
