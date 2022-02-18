@@ -10,10 +10,12 @@
  * We can have multiple catch blocks and they are checked in the order they are coded.
  * Try block needs either catch block or finally block otherwise it will give error.
  * If we are using any resource and exception occures there, we apply try, finally block to release the resource if exception occures. We can instead use try block with resouce allocation only for that.
+ * We can define our own custom exceptions by creating a class extending Exception class, then throwing that new exceptions where we want.
  */
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import com.kunal.Exceptions.*;
 
 
 public class ExceptionHandeling
@@ -26,9 +28,11 @@ public class ExceptionHandeling
 		try
 		{
 			i = 10;
-			j = 2;
+			j = 12;
 			a[4] = 10;
 			k = i/j;
+			if(k == 0)
+				throw new ZeroResultException("Operands giving zero result");
 			System.out.println("Answer is " + k);
 			eh.Input();
 		}
@@ -43,6 +47,10 @@ public class ExceptionHandeling
 		catch(ArrayIndexOutOfBoundsException e) // Sub-class of Exception
 		{
 			System.out.println("Be in your limits...");
+		}
+		catch(ZeroResultException e)
+		{
+			System.out.println("Error: " + e.getMessage());
 		}
 
 		catch(Exception e)
