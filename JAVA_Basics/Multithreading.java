@@ -10,6 +10,8 @@
  * Thread class is concrete class so multiple inheritance is not possible with it.
  * Through Runnable interface we can have multiple inheritance.
  * We execute a thread using .start() method. Start method searches for run function in thread and execute it.
+ * Runnable is a functional interface which have only run method.
+ * We need to create threads and pass runnable object to the constructor.
  */
 
 class Dialogue extends Thread
@@ -28,6 +30,23 @@ class Dialogue extends Thread
 		}
 	}
 }
+class Counting implements Runnable
+{
+	private int[] arr = new int[5];
+	public Counting(int[] a)
+	{
+		arr = a;
+	}
+	public void run()
+	{
+		for(int k: arr)
+		{
+			System.out.println(k);
+			try{Thread.sleep(1000);} catch(Exception e){}
+		}
+	}
+	 
+}
 public class Multithreading
 {
 	public static void main(String[] args)
@@ -37,5 +56,19 @@ public class Multithreading
 		dia1.start();
 		try{Thread.sleep(500);} catch(Exception e){} // second thread should be started after 0.5 sec.
 		dia2.start();
+		try{Thread.sleep(3000);} catch(Exception e){}
+
+		int[] odds = {1,3,5,7,9};
+		int[] even = {0,2,4,6,8};
+
+		Runnable obj1 = new Counting(even);
+		Runnable obj2 = new Counting(odds);
+
+		Thread t1 = new Thread(obj1); //Thread constructor with Runnable objects as arguments
+		Thread t2 = new Thread(obj2);
+
+		t1.start();
+		try{Thread.sleep(500);} catch(Exception e){}
+		t2.start();
 	}
 }
