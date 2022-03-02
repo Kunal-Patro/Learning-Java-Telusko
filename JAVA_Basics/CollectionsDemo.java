@@ -16,7 +16,7 @@ public class CollectionsDemo
 		list.add(56);
 		list.add(5);
 
-		List<Integer> sortList = new ArrayList<>();  // Problem: need to add elements equal or greater than source list size otherwise it gives IndexOutOfBounds error
+		List<Integer> sortList = new ArrayList<>();  // Problem: need to add elements equal or greater than source list size otherwise it gives IndexOutOfBounds error. We can specify the size using constructor but in Lists size and capacity are different attributes. So we need to actually define elements.
 		for(Integer i : list)
 		{
 			sortList.add(0);
